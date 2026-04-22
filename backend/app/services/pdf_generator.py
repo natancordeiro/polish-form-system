@@ -416,16 +416,16 @@ def _fill_page_5(page: fitz.Page, rows: list[BoxRow], data: FormData) -> None:
 
 # Página 1 — Texto "WOJEWODA ..." (ex: MAZOWIECKI)
 P1_WOJEWODA_X: float = 345
-P1_WOJEWODA_Y: float = 280      # ↑ diminuir para subir; padrão anterior: 296
+P1_WOJEWODA_Y: float = 293      # ↑ diminuir para subir; padrão anterior: 296
 
 # Página 1 — Checkbox posiadanie/utrata
-P1_CHECKBOX_X: float = 107      # ↑↓ ajustar se X sair fora do quadradinho; padrão anterior: 112
+P1_CHECKBOX_X: float = 103    # ↑↓ ajustar se X sair fora do quadradinho; padrão anterior: 112
 P1_CHECKBOX_POSIADANIE_Y: float = 619
 P1_CHECKBOX_UTRATA_Y: float = 644
 
 # Página 1 — Nome sobre linha pontilhada (posiadanie)
-P1_NOME_POSIADANIE_X: float = 382
-P1_NOME_POSIADANIE_Y: float = 617  # ↑ diminuir para subir; padrão anterior: 623
+P1_NOME_POSIADANIE_X: float = 376
+P1_NOME_POSIADANIE_Y: float = 620  # ↑ diminuir para subir; padrão anterior: 623
 P1_NOME_POSIADANIE_MAX_W: float = 145
 
 # Página 1 — Nome sobre linha pontilhada (utrata)
