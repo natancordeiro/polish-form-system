@@ -200,7 +200,7 @@ def _fill_page_2(page: fitz.Page, rows: list[BoxRow], data: FormData) -> None:
                if (data.houve_decisao_anterior and data.detalhes_decisao_anterior)
                else "NIE.")
     write_text_block(page, secao_b,
-                     x=70, y=720, max_width=460,
+                     x=70, y=708, max_width=460,
                      line_height=12, max_lines=4, font_size=9)
 
 
@@ -482,21 +482,21 @@ def _fill_page_7(page: fitz.Page, rows: list[BoxRow], data: FormData) -> None:
     bio_mae = (translator.translate(data.biografia_mae)
                if data.biografia_mae else "NIE DOTYCZY.")
     write_text_block(page, bio_mae,
-                     x=70, y=200, max_width=460,
+                     x=70, y=210, max_width=460,
                      line_height=12, max_lines=11, font_size=9)
 
     # A.II. Biografia pai (~y=420..585)
     bio_pai = (translator.translate(data.biografia_pai)
                if data.biografia_pai else "NIE DOTYCZY.")
     write_text_block(page, bio_pai,
-                     x=70, y=425, max_width=460,
+                     x=70, y=435, max_width=460,
                      line_height=12, max_lines=13, font_size=9)
 
     # B.I. Biografia avô materno (~y=685..755)
     bio_avo_m = (translator.translate(data.biografia_avo_materno)
                  if data.biografia_avo_materno else "NIE DOTYCZY.")
     write_text_block(page, bio_avo_m,
-                     x=70, y=688, max_width=460,
+                     x=70, y=698, max_width=460,
                      line_height=12, max_lines=6, font_size=9)
 
 
@@ -514,14 +514,14 @@ def _fill_page_8(page: fitz.Page, rows: list[BoxRow], data: FormData) -> None:
     bio_avo_mn = (translator.translate(data.biografia_avo_materna)
                   if data.biografia_avo_materna else "NIE DOTYCZY.")
     write_text_block(page, bio_avo_mn,
-                     x=70, y=300, max_width=460,
+                     x=70, y=310, max_width=460,
                      line_height=12, max_lines=14, font_size=9)
 
     # B.III avô paterno (~y=540..760)
     bio_avo_p = (translator.translate(data.biografia_avo_paterno)
                  if data.biografia_avo_paterno else "NIE DOTYCZY.")
     write_text_block(page, bio_avo_p,
-                     x=70, y=545, max_width=460,
+                     x=70, y=555, max_width=460,
                      line_height=12, max_lines=18, font_size=9)
 
 
@@ -536,14 +536,14 @@ def _fill_page_9(page: fitz.Page, rows: list[BoxRow], data: FormData) -> None:
     bio_avo_pn = (translator.translate(data.biografia_avo_paterna)
                   if data.biografia_avo_paterna else "NIE DOTYCZY.")
     write_text_block(page, bio_avo_pn,
-                     x=70, y=170, max_width=460,
+                     x=70, y=180, max_width=460,
                      line_height=12, max_lines=14, font_size=9)
 
     # C. Ancestral polonês — biografia que justifica o pedido (~y=430..640)
     bio_anc = (translator.translate(data.biografia_ancestral_polones)
                if data.biografia_ancestral_polones else "NIE DOTYCZY.")
     write_text_block(page, bio_anc,
-                     x=70, y=435, max_width=460,
+                     x=70, y=445, max_width=460,
                      line_height=12, max_lines=17, font_size=9)
 
 
@@ -558,7 +558,7 @@ def _fill_page_10(page: fitz.Page, rows: list[BoxRow], data: FormData) -> None:
     dec_par = (translator.translate(data.decisao_sobre_parentes)
                if data.decisao_sobre_parentes else "NIE.")
     write_text_block(page, dec_par,
-                     x=70, y=140, max_width=460,
+                     x=70, y=150, max_width=460,
                      line_height=12, max_lines=5, font_size=9)
 
     # D.II. Documentos poloneses ascendentes (~y=240..310)
@@ -579,7 +579,7 @@ def _fill_page_10(page: fitz.Page, rows: list[BoxRow], data: FormData) -> None:
     parte_iv = (translator.translate(data.outras_informacoes)
                 if data.outras_informacoes else "NIE DOTYCZY.")
     write_text_block(page, parte_iv,
-                     x=70, y=510, max_width=460,
+                     x=70, y=520, max_width=460,
                      line_height=12, max_lines=22, font_size=9)
 
 
