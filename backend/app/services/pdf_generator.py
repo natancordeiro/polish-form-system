@@ -73,8 +73,8 @@ def _fill_page_1(page: fitz.Page, rows: list[BoxRow], data: FormData) -> None:
 
     # WOJEWODA (texto livre sobre linha pontilhada, à direita da palavra)
     write_text_on_line(page, data.wojewoda,
-                       x=345, y=296, max_width=195,
-                       font_size=11, bold=True)
+                       x=P1_WOJEWODA_X, y=P1_WOJEWODA_Y, max_width=195,
+                       font_size=11, bold=False)
 
     # Nome do requerente — pode ocupar 2 fileiras
     nome = (data.requerente_nome_completo or "").upper()
@@ -94,15 +94,16 @@ def _fill_page_1(page: fitz.Page, rows: list[BoxRow], data: FormData) -> None:
     write_char_boxes(page, e.telefone, rows[9])
 
     # Checkbox tipo de decisão + nome sobre linha pontilhada
-    # Régua visual: checkbox centro em x=112, linha pontilhada (posiadanie) x=385-510
     if data.tipo_decisao == "posiadanie":
-        draw_checkbox_cross(page, x=112, y=619, size=8)
+        draw_checkbox_cross(page, x=P1_CHECKBOX_X, y=P1_CHECKBOX_POSIADANIE_Y, size=8)
         write_text_on_line(page, data.nome_titular_confirmacao,
-                           x=382, y=623, max_width=145, font_size=9, bold=True)
+                           x=P1_NOME_POSIADANIE_X, y=P1_NOME_POSIADANIE_Y,
+                           max_width=P1_NOME_POSIADANIE_MAX_W, font_size=9, bold=False)
     else:
-        draw_checkbox_cross(page, x=112, y=644, size=8)
+        draw_checkbox_cross(page, x=P1_CHECKBOX_X, y=P1_CHECKBOX_UTRATA_Y, size=8)
         write_text_on_line(page, data.nome_titular_confirmacao,
-                           x=358, y=649, max_width=170, font_size=9, bold=True)
+                           x=P1_NOME_UTRATA_X, y=P1_NOME_UTRATA_Y,
+                           max_width=P1_NOME_UTRATA_MAX_W, font_size=9, bold=False)
 
     # Info adicional (texto livre — 3 linhas pontilhadas, ~y=702..735)
     info_pl = translator.translate(data.info_adicional_pedido)
@@ -408,14 +409,41 @@ def _fill_page_5(page: fitz.Page, rows: list[BoxRow], data: FormData) -> None:
 
 
 # ---------------------------------------------------------------------------
-# PÁGINA 6 — CZĘŚĆ II A. Biografia solicitante + B. Escolha cidadania
+# COORDENADAS AJUSTÁVEIS — altere aqui para calibrar o posicionamento
+# Dica: diminuir Y move o texto/X para CIMA na página; aumentar move para BAIXO.
+#       Diminuir X move para a ESQUERDA; aumentar move para a DIREITA.
 # ---------------------------------------------------------------------------
 
-CHECKBOX_TAK_X = 148
-CHECKBOX_NIE_X = 202
-CHECKBOX_NIE_WIEM_X = 248
-CHECKBOX_NIE_DOTYCZY_X = 312
-CHECKBOX_Y = 506
+# Página 1 — Texto "WOJEWODA ..." (ex: MAZOWIECKI)
+P1_WOJEWODA_X: float = 345
+P1_WOJEWODA_Y: float = 280      # ↑ diminuir para subir; padrão anterior: 296
+
+# Página 1 — Checkbox posiadanie/utrata
+P1_CHECKBOX_X: float = 107      # ↑↓ ajustar se X sair fora do quadradinho; padrão anterior: 112
+P1_CHECKBOX_POSIADANIE_Y: float = 619
+P1_CHECKBOX_UTRATA_Y: float = 644
+
+# Página 1 — Nome sobre linha pontilhada (posiadanie)
+P1_NOME_POSIADANIE_X: float = 382
+P1_NOME_POSIADANIE_Y: float = 617  # ↑ diminuir para subir; padrão anterior: 623
+P1_NOME_POSIADANIE_MAX_W: float = 145
+
+# Página 1 — Nome sobre linha pontilhada (utrata)
+P1_NOME_UTRATA_X: float = 358
+P1_NOME_UTRATA_Y: float = 643   # ↑ diminuir para subir; padrão anterior: 649
+P1_NOME_UTRATA_MAX_W: float = 170
+
+# Página 6 — Checkboxes B. (TAK / NIE / NIE WIEM / NIE DOTYCZY)
+# Cada opção tem seu próprio X — teste cada uma separadamente se necessário.
+CHECKBOX_TAK_X: float = 148
+CHECKBOX_NIE_X: float = 207     # ↑ aumentar para mover à direita; padrão anterior: 202
+CHECKBOX_NIE_WIEM_X: float = 253
+CHECKBOX_NIE_DOTYCZY_X: float = 317
+CHECKBOX_Y: float = 506
+
+# ---------------------------------------------------------------------------
+# PÁGINA 6 — CZĘŚĆ II A. Biografia solicitante + B. Escolha cidadania
+# ---------------------------------------------------------------------------
 
 
 def _fill_page_6(page: fitz.Page, rows: list[BoxRow], data: FormData) -> None:
